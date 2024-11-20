@@ -5,40 +5,45 @@ void main() {
     home: Scaffold(
       appBar: AppBar(title: Text('Email Check')),
       body: Center(
-        child: email(),
+        child: Email(),
       ),
     ),
   ));
 }
-class email extends StatefulWidget {
+
+class Email extends StatefulWidget {
   @override
-  emails createState() => emails();
+  Emails createState() => Emails();
 }
-class emails extends State<email> {
-  TextEditingController _controller = TextEditingController();
-  String _message = '';
+
+class Emails extends State<Email> {
+  TextEditingController controller = TextEditingController();
+  String mes = '';
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextField(
-          controller: _controller,
-          decoration: InputDecoration(label: 'Enter email'),
+        Container(
+          width: 600,
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(labelText: 'Enter email'),
+          ),
         ),
         ElevatedButton(
           onPressed: () {
-            String email = _controller.text;
+            String email = controller.text;
             bool isValid = RegExp(
                     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
                 .hasMatch(email);
             setState(() {
-              _message = isValid ? 'Valid email' : 'Invalid email';
+              mes = isValid ? 'Valid email' : 'Invalid email';
             });
           },
           child: Text('Submit'),
         ),
-        Text(_message),
+        Text(mes),
       ],
     );
   }
