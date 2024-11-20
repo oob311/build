@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
+      ),
+      home: const CustomWidget(
+        text: "Hello Batman", 
+        textColor: Colors.black,
+      ),
+    );
+  }
+}
+
+class CustomWidget extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  const CustomWidget({required this.text, required this.textColor});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Flutter App"),
+      ),
+      body: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
