@@ -1,38 +1,32 @@
-void main(){
- var name="Batman";
- int x=20;
- double pi=3.14;
- print("Welcome to the team Avengers $name ");
- print("version: $x");
- if(pi>3){
- print("Value of pi is greater than 3");
- }
-Flutter Lab 2
- else{
- print("Value of pi is less than 3");
- }
- print("Printing Numbers 1 to 5");
- for(int i=1;i<=5;i++){
- print(i);
- }
- int a=10,b=20;
- int sum=add(a,b);
- print("sum : $sum");
- var names=Car("Tesla","Mercedes");
- names.display();
+import 'package:flutter/material.dart';
+
+void main() {
+  int a,b;
+  double pi = 3.14;
+  if(pi<3){
+    print("pi is less than 3");
+  }else{
+    print("pi is larger than 3");
+  }
+  var name = "batman";
+  print("hello $name");
+  int sum = add(5,9);
+  print("sum is $sum");
+  hello hh = new hello(name);
+  hh.sayhello();
 }
-int add(int a,int b){
- return (a+b);
+
+int add(int i, int j) {
+  return i + j;
 }
-class Car{
-late String name1,name2;
- Car(name1,name2){
- this.name1=name1;
- this.name2=name2;
- }
- void display(){
- print("car details:");
- print(name1);
- print(name2);
- }
+
+class hello{
+  var name1;
+  @override
+  hello(name){
+    this.name1 = name;
+  }
+  void sayhello(){
+    print("hello $name1");
+  }
 }
