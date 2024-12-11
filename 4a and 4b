@@ -1,33 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FirstScreen(),
-    );
-  }
-}
+void main() => runApp(MaterialApp(home: FirstScreen()));
+
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Flutter"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) {
-                return SecondScreen();
-              }),
-            );
-          },
-          child: const Text("Go to Second Screen")
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Flutter")),
+        body: Container(
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen())),
+            child: Text("Go to Second Screen"),
+          ),
         ),
       ),
     );
@@ -37,12 +23,16 @@ class FirstScreen extends StatelessWidget {
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Go Back"),
-      ),
-      body: const Center(
-        child: Text("Hello, this is the Second Screen"),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Go Back")),
+        body: Container(
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Back to Screen A'),
+          ),
+        ),
       ),
     );
   }
