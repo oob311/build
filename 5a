@@ -1,4 +1,4 @@
-//stateful --> both in 5a and 5b
+//stateful
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -49,7 +49,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   }
 }
 
-//stateless --> only in 5a
+//stateless
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
