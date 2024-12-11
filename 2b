@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
           alignment: Alignment.center,
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text("Row 1"),
