@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(home: SlideFadeDemo()));
+
+class SlideFadeDemo extends StatefulWidget {
+  @override
+  _SlideFadeDemoState createState() => _SlideFadeDemoState();
+}
+
+class _SlideFadeDemoState extends State<SlideFadeDemo> {
+  bool _isMoved = false;
+  double _opacity = 0.0;
+
+  void _toggleAnimation() {
+    setState(() {
+      _isMoved = !_isMoved;
+      _opacity = _opacity == 0.0 ? 1.0 : 0.0;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Slide and Fade Animation')),
+      body: Stack(
+        children: [
+          AnimatedPositioned(
+            duration: Duration(seconds: 1),
+            left: _isMoved ? 400 : 0,
+            top: 100,
+            child: AnimatedOpacity(
+              opacity: _opacity,
+              duration: Duration(seconds: 1),
+              child: Container(width: 100, height: 100, color: Colors.blue),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _toggleAnimation,
+        child: Icon(Icons.play_arrow),
+      ),
+    );
+  }
+}
