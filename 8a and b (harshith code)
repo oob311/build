@@ -22,8 +22,8 @@ class AnimatedBox extends StatefulWidget {
 class AnimatedBoxState extends State<AnimatedBox> {
   bool isSmall = true;
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return ElevatedButton(
+      onPressed: () {
         setState(() {
           isSmall = !isSmall;
         });
