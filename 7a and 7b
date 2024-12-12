@@ -1,49 +1,43 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(title: Text('Email Check')),
-      body: Center(
-        child: Email(),
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Email & Password')),
+        body:  Center(child: form()),
       ),
-    ),
-  ));
+    );
+  }
 }
 
-class Email extends StatefulWidget {
-  @override
-  Emails createState() => Emails();
+class form extends StatefulWidget {
+  formState createState() => formState();
 }
 
-class Emails extends State<Email> {
-  TextEditingController controller = TextEditingController();
-  String mes = '';
-  @override
+class formState extends State<form> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  String message = '';
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: 600,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(labelText: 'Enter email'),
-          ),
-        ),
+        TextField(controller: emailController, decoration: InputDecoration(labelText: 'Email')),
+        TextField(controller: passwordController,obscureText: true, decoration: InputDecoration(labelText: 'Password')),
         ElevatedButton(
           onPressed: () {
-            String email = controller.text;
-            bool isValid = RegExp(
-                    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-                .hasMatch(email);
             setState(() {
-              mes = isValid ? 'Valid email' : 'Invalid email';
+              message = RegExp('[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]').hasMatch(emailController.text)
+                ? 'Valid email' 
+                : 'Invalid email';
             });
           },
           child: Text('Submit'),
         ),
-        Text(mes),
+        Text(message),
       ],
     );
   }
