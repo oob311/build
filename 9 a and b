@@ -4,7 +4,7 @@
 #it should look like this below:
 # dependencies:
 #   flutter:
-#   sdk: flutter
+#      sdk: flutter
 #   http: ^0.13.4.
 
 import 'package:flutter/material.dart';
