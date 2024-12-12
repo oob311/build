@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() => runApp(MaterialApp(home: PostList()));
+
+class PostList extends StatelessWidget {
+  Future<List<Post>> fetchPosts() async {
+    final response =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    return (json.decode(response.body) as List)
+        .map((post) => Post.fromJson(post))
+        .toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('API Fetch Example')),
+      body: FutureBuilder<List<Post>>(
+        future: fetchPosts(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: snapshot.data?.length ?? 0,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(snapshot.data![index].title),
+              subtitle: Text(snapshot.data![index].body),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class Post {
+  final String title, body;
+
+  Post(this.title, this.body);
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      json['title'],
+      json['body'],
+    );
+  }
+}
