@@ -29,10 +29,12 @@ class formState extends State<form> {
         TextField(controller: passwordController,obscureText: true, decoration: InputDecoration(labelText: 'Password')),
         ElevatedButton(
           onPressed: () {
+            bool isValid = RegExp('[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]').hasMatch(emailController.text);
+            isValid = RegExp('[a-zA-Z0-9@#/_]').hasMatch(passwordController.text);
             setState(() {
-              message = RegExp('[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]').hasMatch(emailController.text)
+              message = isValid
                 ? 'Valid email' 
-                : 'Invalid email';
+                : 'Invalid email or Password';
             });
           },
           child: Text('Submit'),
